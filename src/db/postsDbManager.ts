@@ -15,11 +15,8 @@ export const createTable = async (db: SQLiteDatabase) => {
 // Create
 const createNewPostInDb = async (postContent: string) => {
   try {
-    console.log("createNewPostInDb");
     const db = await getDBConnection();
-    console.log({ db });
     await createTable(db);
-    console.log("createTable SUCCESS");
     const createStatementSql = `INSERT INTO ${tableName} (value) VALUES ('${postContent}')`;
     await db.execAsync(createStatementSql);
   } catch (error) {
@@ -30,11 +27,8 @@ const createNewPostInDb = async (postContent: string) => {
 // Read
 const getAllPostsFromDb = async (): Promise<Post[] | []> => {
   try {
-    console.log("getAllPostsFromDb");
     const db = await getDBConnection();
-    console.log({ db });
     await createTable(db);
-    console.log("createTable SUCCESS");
     const selectStatementSql = `SELECT * FROM ${tableName}`;
     const results = await db.getAllAsync(selectStatementSql);
     return results as Post[];
