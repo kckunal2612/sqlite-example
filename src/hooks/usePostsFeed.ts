@@ -18,6 +18,9 @@ const usePostsFeed = () => {
 
   const createNewPost = async (textContent: string) => {
     await createNewPostInDb(textContent);
+    setTimeout(() => {
+      loadPosts();
+    }, 500);
   };
 
   return { totalCount, addPost: createNewPost, posts };
